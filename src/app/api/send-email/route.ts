@@ -6,15 +6,22 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { to, subject, message, simulationType } = body;
 
+    const isNormal = simulationType === 'normal';
+
     const params = {
       Destination: { ToAddresses: [to] },
       Message: {
         Body: { Text: { Data: message } },
         Subject: { Data: subject },
       },
-      Source: 'sender@example.com', // 발신자 이메일 주소
+      Source: isNormal ? 'sender@example.com' : 'reject@example.com', // 발신자 이메일 주소
     };
 
+    if (simulationType === 'normal') {
+      const data = await ses.verifyEmailAddress({ EmailAddress: 'sender@example.com' }).promise();
+    }
+
+    
     const result = await ses.sendEmail(params).promise();
 
     // 시뮬레이션 타입에 따른 응답
