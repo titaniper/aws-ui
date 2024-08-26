@@ -1,4 +1,5 @@
 import SESDashboard from '@/components/SESDashboard';
+import SESMessageList from '@/components/SESMessages';
 
 export default function Home() {
   return (
@@ -6,6 +7,7 @@ export default function Home() {
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
         <h1 className="text-4xl font-bold mb-8">AWS UI - SES Monitoring</h1>
         <SESDashboard />
+        <SESMessageList />
       </div>
     </main>
   );

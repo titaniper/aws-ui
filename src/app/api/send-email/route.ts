@@ -21,7 +21,8 @@ export async function POST(request: Request) {
       const data = await ses.verifyEmailAddress({ EmailAddress: 'sender@example.com' }).promise();
     }
 
-    
+    ses.getSes
+
     const result = await ses.sendEmail(params).promise();
 
     // 시뮬레이션 타입에 따른 응답
