@@ -86,7 +86,7 @@ export default function SESDashboard() {
 
   if (!stats) return <div>Loading...</div>;
 
-  const chartData: ChartDataPoint[] = stats.sendStatistics.SendDataPoints?.map(point => ({
+  const chartData: ChartDataPoint[] = stats.sendStatistics?.SendDataPoints?.map(point => ({
     time: new Date(point.Timestamp).toLocaleTimeString(),
     deliveries: point.DeliveryAttempts || 0,
     bounces: point.Bounces || 0,
@@ -103,8 +103,8 @@ export default function SESDashboard() {
   ];
 
   const quotaData = [
-    { name: 'Used', value: stats.sendQuota.SentLast24Hours },
-    { name: 'Remaining', value: stats.sendQuota.Max24HourSend - stats.sendQuota.SentLast24Hours },
+    { name: 'Used', value: stats.sendQuota?.SentLast24Hours },
+    { name: 'Remaining', value: stats.sendQuota?.Max24HourSend - stats.sendQuota?.SentLast24Hours },
   ];
 
   return (
@@ -113,9 +113,9 @@ export default function SESDashboard() {
       
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-2">Send Quota</h2>
-        <p>Max 24 Hour Send: {stats.sendQuota.Max24HourSend}</p>
-        <p>Max Send Rate: {stats.sendQuota.MaxSendRate}</p>
-        <p>Sent Last 24 Hours: {stats.sendQuota.SentLast24Hours}</p>
+        <p>Max 24 Hour Send: {stats.sendQuota?.Max24HourSend}</p>
+        <p>Max Send Rate: {stats.sendQuota?.MaxSendRate}</p>
+        <p>Sent Last 24 Hours: {stats.sendQuota?.SentLast24Hours}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
